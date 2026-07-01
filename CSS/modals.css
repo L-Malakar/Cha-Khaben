@@ -1,0 +1,303 @@
+/* =========================================================
+   Cha Khaben — Modal dialogs (Brewing Guide / Order Now)
+   ========================================================= */
+
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  background: rgba(13, 9, 6, 0.72);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.35s ease, visibility 0s linear 0.35s;
+}
+
+.modal-backdrop.open {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.35s ease, visibility 0s linear 0s;
+}
+
+.modal-panel {
+  position: relative;
+  width: 100%;
+  max-width: 560px;
+  max-height: 85vh;
+  overflow-y: auto;
+  background: #fbf6ef;
+  color: var(--warm-darker);
+  border-radius: 22px;
+  padding: 40px 36px;
+  box-shadow: 0 30px 90px rgba(0, 0, 0, 0.45);
+  transform: translateY(24px) scale(0.97);
+  opacity: 0;
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.35s ease;
+}
+
+.modal-backdrop.open .modal-panel {
+  transform: translateY(0) scale(1);
+  opacity: 1;
+}
+
+.modal-close {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  width: 36px;
+  height: 36px;
+  border: none;
+  border-radius: 50%;
+  background: rgba(139, 94, 60, 0.08);
+  color: var(--warm-deep);
+  font-size: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.25s ease, color 0.25s ease, transform 0.25s ease;
+}
+
+.modal-close:hover {
+  background: rgba(200, 149, 108, 0.18);
+  color: var(--warm-darker);
+  transform: rotate(90deg);
+}
+
+.modal-label {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--warm-gold);
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.modal-label::before {
+  content: '';
+  width: 22px;
+  height: 1px;
+  background: var(--warm-gold);
+  opacity: 0.6;
+}
+
+.modal-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(24px, 3vw, 30px);
+  font-weight: 700;
+  margin-bottom: 10px;
+  color: var(--warm-darker);
+}
+
+.modal-subtitle {
+  font-size: 13.5px;
+  font-weight: 300;
+  line-height: 1.7;
+  color: var(--brown-muted);
+  margin-bottom: 28px;
+  max-width: 440px;
+}
+
+/* ===== Brewing guide cards ===== */
+.brew-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  list-style: none;
+}
+
+.brew-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  border-radius: 16px;
+  padding: 18px 20px;
+}
+
+.brew-icon {
+  flex: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  background: rgba(200, 149, 108, 0.1);
+  color: var(--warm-gold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+}
+
+.brew-body { flex: 1; }
+
+.brew-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--warm-darker);
+  margin-bottom: 4px;
+}
+
+.brew-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 6px;
+}
+
+.brew-pill {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  color: var(--warm-deep);
+  background: rgba(200, 149, 108, 0.12);
+  padding: 4px 10px;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.brew-tip {
+  font-size: 12.5px;
+  font-weight: 300;
+  line-height: 1.6;
+  color: var(--brown-muted);
+}
+
+/* ===== Order form ===== */
+.order-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.form-row {
+  display: flex;
+  gap: 14px;
+}
+
+.form-row .form-field { flex: 1; }
+
+.form-field { display: flex; flex-direction: column; gap: 6px; }
+
+.form-field label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--warm-deep);
+}
+
+.form-field input,
+.form-field select,
+.form-field textarea {
+  font-family: 'Inter', sans-serif;
+  font-size: 13.5px;
+  color: var(--warm-darker);
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  padding: 11px 14px;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.form-field textarea { resize: vertical; min-height: 70px; }
+
+.form-field input:focus,
+.form-field select:focus,
+.form-field textarea:focus {
+  outline: none;
+  border-color: var(--warm-gold);
+  box-shadow: 0 0 0 3px rgba(200, 149, 108, 0.18);
+}
+
+.form-field input:invalid:not(:placeholder-shown) {
+  border-color: #c0554a;
+}
+
+.form-submit {
+  margin-top: 6px;
+  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 13px 26px;
+  background: var(--warm-gold);
+  color: var(--warm-dark);
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.4px;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.form-submit:hover { background: #d4a07a; transform: translateY(-1px); }
+.form-submit:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+
+.form-note {
+  font-size: 11.5px;
+  color: rgba(107, 87, 68, 0.75);
+  line-height: 1.6;
+}
+
+.form-note a { color: var(--warm-deep); font-weight: 600; text-decoration: underline; }
+
+.form-error {
+  font-size: 12px;
+  color: #b3372c;
+  min-height: 16px;
+}
+
+/* ===== Success state ===== */
+.order-success {
+  display: none;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.order-success.visible { display: flex; }
+.order-form.hidden { display: none; }
+
+.order-success-icon {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: rgba(139, 176, 120, 0.15);
+  color: #4c7a3d;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  margin-bottom: 4px;
+}
+
+.order-success h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 20px;
+  color: var(--warm-darker);
+}
+
+.order-success p {
+  font-size: 13.5px;
+  color: var(--brown-muted);
+  line-height: 1.7;
+}
+
+@media (max-width: 480px) {
+  .modal-panel { padding: 30px 22px; border-radius: 18px; }
+  .form-row { flex-direction: column; }
+}
